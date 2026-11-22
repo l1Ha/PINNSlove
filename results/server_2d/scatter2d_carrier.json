@@ -1,0 +1,120 @@
+{
+  "energies": [
+    {
+      "E_c": 200.0,
+      "eta_star": 100.0,
+      "reference_uncertainty_l2": 0.015384122114244243,
+      "runs": [
+        {
+          "n_channels": 8,
+          "n_corr": 0,
+          "carrier": {
+            "ridge": 1e-14,
+            "val_residual": 0.9828664334580386,
+            "n_basis": 16
+          },
+          "correction": {
+            "accepted": false,
+            "val_residual": 0.9828664334580386,
+            "ridge": null
+          },
+          "l2_interior_4p9": 4.063517185805309,
+          "l2_interior_6p9": 10.244281640296633,
+          "wall_s": 0.6
+        },
+        {
+          "n_channels": 8,
+          "n_corr": 300,
+          "carrier": {
+            "ridge": 1e-14,
+            "val_residual": 0.9828664334580386,
+            "n_basis": 16
+          },
+          "correction": {
+            "accepted": true,
+            "val_residual": 0.4789281043276902,
+            "ridge": 0.0001
+          },
+          "l2_interior_4p9": 0.5128366482325056,
+          "l2_interior_6p9": 1.6884369734284614,
+          "wall_s": 1.3
+        },
+        {
+          "n_channels": 8,
+          "n_corr": 1500,
+          "carrier": {
+            "ridge": 1e-14,
+            "val_residual": 0.9828664334580386,
+            "n_basis": 16
+          },
+          "correction": {
+            "accepted": true,
+            "val_residual": 0.4771673542039618,
+            "ridge": 1e-10
+          },
+          "l2_interior_4p9": 0.5373058549236657,
+          "l2_interior_6p9": 2.1577767343017267,
+          "wall_s": 4.6
+        }
+      ]
+    },
+    {
+      "E_c": 500.0,
+      "eta_star": 200.0,
+      "reference_uncertainty_l2": 0.005480436393690471,
+      "runs": [
+        {
+          "n_channels": 8,
+          "n_corr": 0,
+          "carrier": {
+            "ridge": 0.1,
+            "val_residual": 0.9799088535413454,
+            "n_basis": 16
+          },
+          "correction": {
+            "accepted": false,
+            "val_residual": 0.9799088535413454,
+            "ridge": null
+          },
+          "l2_interior_4p9": 11.01231694870983,
+          "l2_interior_6p9": 38.715651606382885,
+          "wall_s": 0.6
+        },
+        {
+          "n_channels": 8,
+          "n_corr": 300,
+          "carrier": {
+            "ridge": 0.1,
+            "val_residual": 0.9799088535413454,
+            "n_basis": 16
+          },
+          "correction": {
+            "accepted": true,
+            "val_residual": 0.4760551437191757,
+            "ridge": 1e-05
+          },
+          "l2_interior_4p9": 0.7601214852210916,
+          "l2_interior_6p9": 3.3973315055445035,
+          "wall_s": 1.2
+        },
+        {
+          "n_channels": 8,
+          "n_corr": 1500,
+          "carrier": {
+            "ridge": 0.1,
+            "val_residual": 0.9799088535413454,
+            "n_basis": 16
+          },
+          "correction": {
+            "accepted": true,
+            "val_residual": 0.47360892752778344,
+            "ridge": 0.01
+          },
+          "l2_interior_4p9": 0.45023392918689265,
+          "l2_interior_6p9": 4.701230125378489,
+          "wall_s": 4.6
+        }
+      ]
+    }
+  ]
+}
