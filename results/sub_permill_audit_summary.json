@@ -1,0 +1,24 @@
+{
+  "all_passed": true,
+  "elapsed_sec": 0.03670001029968262,
+  "results": [
+    {
+      "system": "1D Morse Bound Spectrum",
+      "type": "EXACT_ANALYTIC",
+      "max_rel_error": 0.00047420394436886205,
+      "status": "PASS"
+    },
+    {
+      "system": "J>0 Angular Coupling Bessel Spectrum",
+      "type": "EXACT_ANALYTIC",
+      "max_rel_error": 2.220446049250313e-16,
+      "status": "PASS"
+    },
+    {
+      "system": "High-Dim Molecular Vibrational ZPE Limit",
+      "type": "EXACT_ANALYTIC",
+      "max_rel_error": 0.0,
+      "status": "PASS"
+    }
+  ]
+}

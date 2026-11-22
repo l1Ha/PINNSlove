@@ -1,0 +1,12 @@
+PROGRAM Program_FH2_SW
+USE FileUnits_Module
+IMPLICIT NONE
+CHARACTER(LEN=100), PARAMETER:: SysDir='APH3D_FH2_SW/'
+
+OutDir=TRIM(OutputRoot)//'FH2/'//TRIM(SysDir)
+InputDir=TRIM(InputRoot)//'FH2/'//TRIM(SysDir)
+
+CALL BasisForScattering
+
+STOP 'Program_FH2_SW'
+END PROGRAM Program_FH2_SW

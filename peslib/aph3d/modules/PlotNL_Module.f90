@@ -1,0 +1,163 @@
+MODULE PlotNL_Module
+   USE Numeric_Kinds_Module
+   USE Dipole_Module, ONLY: NSurf
+   IMPLICIT NONE
+   SAVE
+!----------------------------------------------------------------
+! kgloss is a flag that tells whether objects will have specualr
+!     reflection (gloss).  IF kgloss(n) = 0, object n will have
+!     diffuse reflection.  IF kgloss(n) = 1, object n will also
+!     have specular reflection.
+   DATA kgloss/1/
+!----------------------------------------------------------------
+! nl specifies the number of scan lines.
+!     nl=300 is best for a shaded surface on the tektronix.
+!     nl=750 is good for the fr-80.
+!     when iplot = 2, no scan lines are drawn, but nl defines
+!     the resolution for the drawing of the mesh plot.
+   DATA nl/300/
+!----------------------------------------------------------------
+! kolb is a pointer that defines the background color on the palette
+!     hue, saturation, and intensity.  kolb(1) defines the color at the
+!     top of the screen, kolb(2) gives the color at bottom, and
+!     intermediate points have intermediate colors.  example, kolb = 7
+!     gives background color hue(7), sat(7), and cint(7).  IF kolr(1) =
+!     0, no background will be given.  background is not given for mesh
+!     plots.
+   INTEGER Kolb(2)
+   DATA kolb/10 ,11/
+!----------------------------------------------------------------
+! iplt specifies the type of plot.
+! iplt = 1 gives shaded surfaces.
+! iplt = 2 gives mesh plot.
+! iplt = 3 gives both shaded surfaces and mesh plot.
+!----------------------------------------------------------------
+! rad is a table of radii that is used only when kolr is negative.
+!----------------------------------------------------------------
+! kolr is a vector of size nob that points to the colors in a color
+!     palette.  example, IF kolr(3) = 6, THEN object 3 will be colored
+!     with hue(6), sat(6), and cint(6).  IF kolr(k) = 0, the colors of
+!     individual cells of object k will be colored according to numbers
+!     in last 9 bits of the y coordinates of object k as follows.
+!     IF the last 9 bits of y(i,j) in object k represent the number n,
+!     THEN cell (i,j) will be colored hue(n), sat(n), cint(n).  this can
+!     be set up by the following fortran statement,
+!          y(i,j) = y(i,j).AND..NOT.777b.or.n
+!     IF kolr is negative, object will be colored according to distance
+!     from a point (see rad and center below).  this does not work
+!     for mesh plots.  example: IF kolr(3) = -5, THEN the color on
+!     object 3 within radius rad(5) from a point defined by the
+!     x,y,z coordinates center(1,3), center(2,3), and center(3,3) will
+!     be hue(5), sat(5),cint(5).  points on the object that are farther
+!     than rad(5) but less than rad(6) are colored hue(6), sat(6), etc.
+!     any number of monotonically increasing radii (rad) may be used for
+!     for an object but the last one must be greater than the distance
+!     from center to the farthest point on the object.  otherwise
+!     when the program looks for the next larger rad, it may go into
+!     an endless loop.  different sets of radii may be defined for
+!     different objects, or the same set may be used.----------------------------------------------------------------
+! set default colors
+! hue=0.0  black
+! hue=0.5  magenta
+! hue=1.0  red
+! hue=1.5  yellow
+! hue=2.0  green
+! hue=2.5  cyan
+! hue=3.0  blue
+! hue=3.5  magenta
+! hue=4.0  white
+!
+REAL(KIND=WP_Kind) Hue(11)
+DATA hue/0.0d0, 0.5d0, 1.0d0, 1.5d0, 2.0d0, 2.5d0, 3.0d0, 3.5d0, 4.0d0, 0.5d0, 1.5d0/
+!----------------------------------------------------------------
+! nil gives the number of intensity levels for shaded surface pictures.
+!     nil = 30 gives good quality pictures. nil = 10 is satisfactory for
+!     many purposes.  more computer time is required for larger nil.
+!     maximum nil is 100.
+DATA nil/10/
+!----------------------------------------------------------------
+! view is a vector of size 3 giving the x, y, and z coordinates
+!     of the view point.
+REAL(KIND=WP_Kind) view(3)
+DATA view/0.d0,-50.d0,50.d0/
+!----------------------------------------------------------------
+! win is a vector of size 4 defining the x, y, and z coordinates of
+!     the center of the viewing window.  win(4) defines the width of the
+!     window.
+REAL(KIND=WP_Kind) win(4)
+DATA win/0.d0,0.d0,0.d0,8.d0/
+!----------------------------------------------------------------
+! sun=xsn is a 4 by nxsn array giving the x, y, and z coordinates of
+!     the illuminating light positions.  a good position for the light
+!     is at the view position.  xsn(4,n) gives the light intensity of
+!     the nth light source (values between 0.0 and 1.0).  this should
+!     normally be set to 1.0, but it should be less for multiple light
+!      sources.
+REAL(KIND=WP_Kind) xsn(4)
+DATA xsn/-50.d0,0.d0,200.d0,8.d0/
+!----------------------------------------------------------------
+! nxsn gives the number of light sources.
+INTEGER nxsn
+DATA nxsn/1/
+!----------------------------------------------------------------
+! sat is an array corresponding to hue which gives saturation
+!     of the colors.  sat = 1. gives pure colors.  sat = 0. gives
+!     white.  intermediate values give pastel colors.
+REAL(KIND=WP_Kind) Sat(11)
+DATA sat/1.d0,1.d0,1.d0,1.d0,1.d0,1.d0,1.d0,1.d0,1.d0, 0.5d0,0.0d0/
+!----------------------------------------------------------------
+! cint is an array corresponding to hue that gives
+!     relative intensity of reflected light.  cint must be in
+!     the range 0.0 to 1.  normally it should be 1.
+REAL(KIND=WP_Kind) cint(11)
+DATA cint/1.d0,1.d0,1.d0,1.d0,1.d0,1.d0,1.d0,1.d0,1.d0,0.5d0, 0.d0/
+!----------------------------------------------------------------
+! center is a table that defines the coordinates of the center
+!     for distances rad.  center(1,n), center(2,n), and center(3,n)
+!     are the x,y, and z coordinates of the point for object n.
+!     center is used only when kolr(n) is negative.
+REAL(KIND=WP_Kind) cent(3)
+DATA cent/0.d0,0.d0,0.d0/
+!----------------------------------------------------------------
+! shad determines shadowing.  set shad(5) = 0.0 for no shadowing.
+!     set shad(5) = 1.0 for darkest shadows.  intermediate values
+!     give intermediate darkness.  shadows will be determined by
+!     temporarily setting up viewpoints at the sun positions and
+!     calculating hidden portions of the picture.  a window must
+!     be set for the shadowing.  the x, y, and z coordinates of the
+!     center of this window are given by shad(1), shad(2), shad(3),
+!     respectively.  the width of the window is given by shad(4).
+!     points outside this window (as viewed from the sun position) will
+!     not be shadowed.  make the window large enough to DO the job, but
+!     IF it is too large, the resolution becomes too course.
+!     the roughness around the edges of the shadows is due to
+!     the courseness of the mesh.
+!     IF shad(5) = 0.0, the other values of the shad array need not
+!     be defined.  multiple shadows are possible for multiple light
+!     sources.  more time is required for more suns.
+REAL(KIND=WP_Kind) shad(5)
+INTEGER IProj
+DATA shad/0.d0, 0.d0, 0.d0, 0.d0, 0.d0/
+DATA iproj/2/
+REAL(KIND=WP_Kind) chij
+DATA chij/0.d0/
+LOGICAL logpot
+DATA logpot/.false./
+DATA klrplt/4/
+REAL(KIND=WP_Kind) radii
+   DATA radii/0.0/
+   DATA iplt/2/
+   DATA denplot/.false./
+   DATA kase/1/
+   LOGICAL ipotntl, DenPlot
+   INTEGER Nthmode, iplt, nl, nil, klrplt, kgloss, Kase
+   INTEGER irhostrt, irhoend, NPltSkp, IRdSurf
+   REAL(KIND=WP_Kind) CutOffl, CutOffh, Range
+   DATA range/1.0d0/
+   DATA DenPlot/.false./
+   DATA Kase/1/
+   NAMELIST/plot/ irhostrt, irhoend, ipotntl, nsurf, nthmode, iplt, nl, nil,     &
+                     kolb, view, win, iproj, denplot, range,                        &
+                     cutoffh, cutoffl, logpot, irdsurf, npltskp,                    &
+                     klrplt, kgloss, radii, chij, kase
+END MODULE PlotNL_Module

@@ -1,0 +1,55 @@
+{
+  "system": "H2O 2D frozen-bond model (r = re), Jacobi (R, gamma)",
+  "method": "variational PINN (variance loss + trainable Gaussian envelope)",
+  "reference": "FD x Legendre-DVR (500 x 80)",
+  "n_states": 4,
+  "wall_time_s": 65.51567220687866,
+  "max_abs_err_cm1": 194.52191042466438,
+  "max_state_overlap": 6.061408979157398e-05,
+  "rows": [
+    {
+      "n": 0,
+      "pinn": -78438.73490802638,
+      "E_pde_finegrid": -78440.45626860349,
+      "E_pde_finegrid2": -78440.36945316634,
+      "fine_grid_agreement": 0.08681543715647422,
+      "E_sob_finegrid": -78438.73490802638,
+      "ritz": -78443.14438386486,
+      "dvr": -78445.6985499361,
+      "err": 5.242281332612038
+    },
+    {
+      "n": 1,
+      "pinn": -72059.04263955823,
+      "E_pde_finegrid": -77023.92100812487,
+      "E_pde_finegrid2": -71837.27869890901,
+      "fine_grid_agreement": 5186.642309215866,
+      "E_sob_finegrid": -72059.04263955823,
+      "ritz": -76823.11745579653,
+      "dvr": -76829.39909770021,
+      "err": -194.52191042466438
+    },
+    {
+      "n": 2,
+      "pinn": -75146.73605361264,
+      "E_pde_finegrid": -75260.76342775914,
+      "E_pde_finegrid2": -74861.73380373171,
+      "fine_grid_agreement": 399.0296240274329,
+      "E_sob_finegrid": -75146.73605361264,
+      "ritz": -75201.17151461501,
+      "dvr": -75218.94082587301,
+      "err": -41.82260188613145
+    },
+    {
+      "n": 3,
+      "pinn": -74793.32411398039,
+      "E_pde_finegrid": -74793.26120170765,
+      "E_pde_finegrid2": -74793.35998108397,
+      "fine_grid_agreement": 0.098779376319726,
+      "E_sob_finegrid": -74793.32411398039,
+      "ritz": -74796.29654630828,
+      "dvr": -74788.75242152621,
+      "err": -4.508780181437032
+    }
+  ]
+}

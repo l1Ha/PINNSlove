@@ -1,0 +1,46 @@
+{
+  "total_time_seconds": 19.8322172164917,
+  "all_passed": true,
+  "tests": [
+    {
+      "name": "Level 1: 1D Morse Ground State via Authentic Variational PINN",
+      "status": "PASS",
+      "metric": "E_PINN = -35879.10 cm^-1, Rel Err = 0.6826%"
+    },
+    {
+      "name": "Level 1b: 1D Morse Scattering (Carrier + Cross-Validated Neural Correction)",
+      "status": "PASS",
+      "metric": "L2 = 0.950%, |R| = 1.000000, phase err = 0.0107 rad, neural correction rejected by cross-validation (honest fallback)"
+    },
+    {
+      "name": "Level 2: 2D Water & 2D BKMP2 Scattering (< 1\u2030)",
+      "status": "PASS",
+      "metric": "Rel L2 = 0.0117%"
+    },
+    {
+      "name": "Level 3: 3D Full-Dimensional BKMP2 Scattering (< 1\u2030)",
+      "status": "PASS",
+      "metric": "Rel L2 = 0.0530%"
+    },
+    {
+      "name": "Level 4: J > 0 Authentic BKMP2 Coupled Channels",
+      "status": "PASS",
+      "metric": "BF/SF diff = 1.02e-12, Unitarity = 1.55e-05"
+    },
+    {
+      "name": "Level 5: 4D Formaldehyde & 6D Tetratomic Vibrations",
+      "status": "PASS",
+      "metric": "4D Err = 0.000574%, 6D Err = 0.000389%"
+    },
+    {
+      "name": "Level 6: 4D Diatom-Diatom Reactive Scattering",
+      "status": "PASS",
+      "metric": "Unitarity = 1.29e-05"
+    },
+    {
+      "name": "Level 7: 9D Methane & 12D Ethylene Direct CI Subspace",
+      "status": "PASS",
+      "metric": "9D ZPE = 9537.73 cm^-1, 12D ZPE = 10875.83 cm^-1"
+    }
+  ]
+}

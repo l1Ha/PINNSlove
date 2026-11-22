@@ -1,0 +1,3 @@
+ &IFilename
+   InputFile="Input/DMBE_ABM.data"
+ &END

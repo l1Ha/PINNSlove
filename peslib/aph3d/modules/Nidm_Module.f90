@@ -1,0 +1,5 @@
+MODULE Nidm_Module
+   IMPLICIT NONE
+   SAVE
+   INTEGER, PARAMETER:: Nidm=1
+END MODULE Nidm_Module

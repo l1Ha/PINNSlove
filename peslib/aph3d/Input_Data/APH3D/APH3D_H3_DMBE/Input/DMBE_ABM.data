@@ -1,0 +1,506 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!System Information!!!!!!!!!!
+!!!!PKH3 Reactive Scattering!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ $Title_Labels
+   Title1='H+H2 reactive scattering using PK2 potential'
+   Title2='channel(1)=HH+H,    channel(2)=HH+H     channel(3)=HH+H'
+   Title3='H3 DMBE'
+ $END Title_Labels
+ 
+ $PotentialNames
+    PES_Name='DMBE HHH         PES     '
+    Pesnaml=""
+    Pesnamu=""
+    Pesnamd=""
+ $end
+
+ $potzero
+   vzero=0.d0
+ $end
+
+ $Atoms
+   AtomicSymbol='H','H','H'
+   MassNumber=1,1,1
+ $end
+
+ $momentum  
+   jtot=0, parity=0, nsymc=T  F  F, jeven=T, jref=0, megacoup=0, megamax=0
+ $end
+
+ $approx  
+   censud=  F
+ $end
+ 
+ $options  
+   scheme=1, cstest=F, lsfunc=T, lmatelm=T, loverlap=T, lsample=F, cray=F, lmatch=F, lplot=F, lenlvls=F, 
+   lmesher=T, laph3d=F, sfuntype='ABM'
+ $end
+ 
+ 
+ !!!!!!!!!!!!!!!!!!!
+ !!!!Sector Data!!!!
+ !!!!!!!!!!!!!!!!!!!
+ $SectorDef
+   RhoStart=2.1000d0
+   RhoStartABM_APH=2.1000d0
+   RhoStartDelves=8.1000d0
+   RStartJacobi=8.1000d0
+   NSectors=301
+   JacobiProp=.False.
+   DVRBasis=.true.
+   FEMBasis=.False.	
+   PDAFBasis=.False.
+   CallBound3D=.False.
+ $end
+ 
+ $sfundist
+     nrho= 301,
+     rhomin=    2.1d0,
+     deltarho1= 0.05d-00        !5.478743543876281D-01
+     deltarho2= 0.00d-00        !1.0000000000000D-02,
+     rhomax=   8.10D0
+ $end
+ 
+ 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Surface Function Data Common to All Methods!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 
+ $pmaovr
+   pmatfile='BinOut/PotMatrx.bin'
+    ovrfile='BinOut/Ovrlp.bin'
+     sbfrst='BinOut/SetBasis_First.bin'
+   jtotfile='BinOut/Diag_Jtot.bin'
+    corfile='BinOut/Coriolis.bin'
+   asymfile='BinOut/Asym_Top.bin'
+ $end
+ 
+ $rstart 
+   restart=.False.,
+   nbreak=100,
+   irhost=3 
+ $end
+ 
+ $testing
+   test='nul'
+ $end
+ 
+ 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+!!!!Analytical Basis Method Data for Surface Functions!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ $quantum
+  minvib=  0  0  0
+  maxvib=  5  5  5
+  jmin(0,1,0)=   6*0,  jmax(0,1)=  6*12 ! Use (maxvib+1)*(jmax or jmin)
+  jmin(0,2,0)=   6*0,  jmax(0,2)=  6*12 ! Use (maxvib+1)*(jmax or jmin)
+  jmin(0,3,0)=   6*0,  jmax(0,3)=  6*12 ! Use (maxvib+1)*(jmax or jmin)
+ $end
+ 
+ $gauss   
+   old_way=  T
+   npow=     0, 0, 0
+   nglegn=  46 46  46,
+   nhermt=  25  25  25,
+   nlegndre=12 12 12                !These numbers must be equal to jmax(0,tau)
+   intwt=    1   1   1,
+   rx=    1.085000000000000d0    1.085000000000000d0    1.085000000000000d0,
+   re=    1.401120000000000d0    1.401120000000000d0    1.401120000000000d0,
+   zeta=  1.000000000000000d0    1.000000000000000d0    1.000000000000000d0,
+   delta= 0.010000000000000d0    0.010000000000000d0    0.010000000000000d0,
+   weau=  2.0053400000000D-02    2.0053400000000D-02    2.0053400000000D-02,
+   wexeau=5.5284700000000D-04    5.5284700000000D-04    5.5284700000000D-04,
+   ralpha=3.166000000000000d0    3.166000000000000d0    3.166000000000000d0,
+   balpha=1.000000000000000d0    1.000000000000000d0    1.000000000000000d0,
+   calpha=0.920000000000000d0    0.920000000000000d0    0.920000000000000d0,
+   dalpha=0.030000000000000d0    0.030000000000000d0    0.030000000000000d0,
+   anharm=0.800000000000000d0    0.800000000000000d0    0.800000000000000d0,
+ $end
+ 
+ $gaussx
+   nglegn=  46  46  46,
+   nhermt=  25, 25, 25,
+   npow=    0    0   0,
+   ralpha=  0.95000000000000d0   0.95000000000000d0  0.95000000000000d0,
+   rx=      1.1000000000000d0    1.1000000000000d0   1.1000000000000d0,
+   re=      1.4011200000000d0    1.4011200000000d0   1.4011200000000d0,
+   weau=    2.0053400000000D-02, 2.0053400000000D-02 2.0053400000000D-02
+ $end
+ 
+ $qcasep
+   qcase=  .True.
+   qswitch= 2.1
+ $end
+
+ $qdivp
+   nthdiv=  2,
+   nchdiv=  7,
+   nqth=  20  20   0   0   0   0   0  0  0  0  0  0  0  0  0  0  0  0  0  0  0,
+   nqch=  13  10  20  10  20  10  13  0  0  0  0  0  0  0  0  0  0  0  0  0  0,
+   thdiv=  0.d0                 0.75000000000000d0  1.5707963267949d0    0.d0
+           0.                   0.                  0.                   0.
+           0.                   0.                  0.                   0.
+           0.                   0.                  0.                   0.
+           0.                   0.                  0.                   0.
+           0.,
+   chdiv= -1.5707963267949d0   -1.2472000000000d0  -0.84720000000000d0  -0.20000000000000d0
+           0.2000000000000d0    0.8472000000000d0   1.24720000000000d0    1.5707963267949d0
+           0.                   0.                  0.                    0.  
+           0.                   0.                  0.                    0.
+           0.                   0.                  0.                    0.
+           0.
+ $end
+
+ $convrg
+   eigmin=1.0000000000000D-04, ovrerr=1.0000000000000D-04, ngood=100, nfreq=100, nave1=-1, nave2=-1
+ $end
+ 
+ $integopt
+   int_opt='ABM_Integrals'
+ $end
+ 
+ 
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !!!!Discrete Variable Representation Data for Surface Functions!!!!
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ $system
+         Num_DVR_Sectors=3,
+         nchisec=40    ,100   ,120   ,0    ,
+         nthesec=20    ,50    ,60    ,0    ,0,
+         rendsec=6.00d0,8.00d0,12.0d0,0.0d0,
+         potmsec=3.90d0,3.90d0,3.90d0,0.0d0,
+         pevmsec=3.50d0,2.60d0,2.60d0,0.0d0,
+         rho1=5.d0,
+         peigv=.False.,
+         debug=.False.,
+         ltheta=0,
+         matelem=.True.,
+         h3sys=.False.,
+         fbrtr=.False.,
+         rhofbr1=11.80d0,
+         rhofbr2=11.99d0,
+         nsfunc=100,
+         nrow=5,
+         ncol=5,
+         ngood1=25,
+         ngood2=25,
+         initsec=1,
+         nrhomx=5,
+         fmpotma=1.500d0,
+         pointg='c2v',
+         medium=.true.
+ $end
+
+ $sysu
+     jevenu=.true.,iparu=0,jtotu=0,megau=0,cstestu=.False.,
+     pointu='c2v',
+     nrhos1u=1,
+     rhos1u=5.0d0,
+     pevms1u=4.d0
+ $end
+ 
+ $fbr
+   nsfunc=100
+   lmax=20
+   mmax=40
+   nsym=1
+ $end
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Finite Element Method Data for Surface Functions!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ $mshdat  
+    nlt=  17, 
+    nlc=  8  8  8, 
+    ndiv=  0, 
+    nfreq=  12, 
+    nxtra=  0, 
+    nodmax=    19000, 
+    tolfn2=    5.0000000000000D-02, 
+    xkmesh=    12.220000000000, 
+    nlancz=   2, 
+    nconsidr=  246, 
+    tolfn1=   0.80000000000000
+ $end
+ 
+ $stst  
+      nquad=  5, 
+        seq=    1.1353200000000    1.1353200000000    1.1353200000000
+      betaw=   21.510000000000    21.510000000000    21.510000000000
+     chncof=    1.0000000000000    1.0000000000000    1.0000000000000
+   betafrst=   10.0000000000000   10.0000000000000   10.0000000000000
+ $end
+
+ $savnam  
+   ithsav=  100
+ $end
+
+ $etachanl
+ $end
+
+
+!!!!!!!!!!!!!!!!!!!!!
+!!!!Plotting Data!!!!
+!!!!!!!!!!!!!!!!!!!!!
+ $PlotOpt
+   PlotVee=.False.
+ $end
+ 
+ $sfplot_ABM
+    NTheta_Plot=40
+    a=90.d0
+    b=0.2d0
+    c=1.d-1
+    phi_s=0.5d0
+    ithmode=1
+    primitive=.false.
+    Plot_Sfunc=.True.
+ $end
+ 
+ $sfplot_FEM
+    NTheta_Plot=10
+    a=90.d0
+    d=-0.2d0
+    c=1.d-1
+    phi_s=0.5d0
+    ithmode=1
+    Plot_Sfunc=.True.
+ $end
+ 
+ $contour
+    nx=101
+    ny=101
+    iaph=30 
+    rho=20.0d0
+    VMax=4.0d0
+ $end
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Photodissociation Data!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ $dipole2
+   lphoto=.false.
+ $end
+   
+ $dipole
+     nsurf=1
+ $end
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Diatomic Basis and Triatomic Basis!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ $rhovalue
+   rhoval= 8.10d0
+ $end
+
+ $intchanl
+   integrat=T,T,T
+ $end
+ 
+ $DAF_BoundDiatomic
+   nd_daf=40
+   ndaf=2
+   mval=32
+   NBoundDiatomic=13,
+   diag_opt=2
+   SetPotToZero=.False.
+   direct=.true.
+   jtot=0
+ $end DAF_BoundDiatomic
+ 
+ $DAF_Bound3d
+   nd_daf=40
+   ndaf=2
+   mval=32
+   NBound3D=19,
+   diag_opt=2
+   SetPotToZero=.False.
+   direct=.true.
+   jtot=0
+ $end DAF_Bound3d
+ 
+ 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Experimental Spectroscopic Data used for Checking Diatomic Basis!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ $spectro 
+  diatom='H-H    ','H-H    ','H-H    '
+  wecm= 0.4401213d+04, 0.4401213d+04, 0.4401213d+04
+  wexecm= 0.1213360d+03, 0.1213360d+03, 0.1213360d+03
+  weyecm= 0.8129000d+00, 0.8129000d+00, 0.8129000d+00
+  becm= 0.6085300d+02, 0.6085300d+02, 0.6085300d+02
+  decm= 0.4710000d-01, 0.4710000d-01, 0.4710000d-01
+  alfecm= 0.3062200d+01, 0.3062200d+00, 0.3062200d+00
+  reau= 0.1401081d+01, 0.1401081d+01, 0.1401081d+01
+  vshift= 0.0000000d+00, 0.0000000d+00, 0.0000000d+00
+ $end
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Propagation Data!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!
+ $TotEnergy
+   efirst=   1.102479266030699d-2,
+   deltaeng= 5.5123963301538D-4      !3.674930886769200d-4                       
+   nenergy= 121
+ $end
+  
+ $basis_n
+   lam_n=100,     ! The sum of this array is the number of propagation channels (117)
+   lamfst=0,      ! Starting index of Lam_n
+   lamlst=0       ! Beginning index of Lam_n
+ $end
+  
+ $regins
+   start=2.1d0,
+   SwitchToVIVS=8.1d0,
+   finish=8.1d0,
+   endaph=8.1d0,
+   enddelve=8.1d0
+ $end
+ 
+ $logder
+    EDeriv=.True.
+    nsteps=20,
+    iprtx='none  ',
+    init_rmat='Initialize  ', 
+    rmat_file='R_matrix'
+    method='new_logder'
+ $end
+ 
+ $storage
+  irdindep=.false., iwrindep=.true.
+ $end
+ 
+ $vivs
+   drnow=0.1d0
+   toff=1.d-4
+   ialpha=4
+ $end
+
+!!!!Asymptotic Data!!!!
+
+ $umat_trans
+   calc_rmat=T
+   iprt='medium'
+ $end
+ 
+ $kmatrix
+   calc_kmat=T
+ $end
+ 
+!!!!!!!!!!!!!!!!!!!!!!
+!!!!Debugging Data!!!!
+!!!!!!!!!!!!!!!!!!!!!!
+ $debug 
+   option='selected'                   
+   iprtall=  1
+   nsubs=  100
+   subs(  1)='adini  ',iprt(  1)=  0
+   subs(  2)='adress ',iprt(  2)=  0
+   subs(  3)='angle  ',iprt(  3)=  1
+   subs(  4)='aph3d  ',iprt(  4)=  0
+   subs(  5)='aphchk ',iprt(  5)=  0
+   subs(  6)='aphdel ',iprt(  6)=  0
+   subs(  7)='aphdelbf',iprt( 7)=  0
+   subs(  8)='aphget ',iprt(  8)=  0
+   subs(  9)='aphmat ',iprt(  9)=  0
+   subs( 10)='aphprop',iprt( 10)=  0
+   subs( 11)='asympt ',iprt( 11)=  0
+   subs( 12)='basis  ',iprt( 12)=  1
+   subs( 13)='basisb ',iprt( 13)=  0
+   subs( 14)='basisck',iprt( 14)=  0
+   subs( 15)='calcpot',iprt( 15)=  0
+   subs( 16)='coneqn ',iprt( 16)=  0
+   subs( 17)='corgen ',iprt( 17)=  0
+   subs( 18)='delchk ',iprt( 18)=  0
+   subs( 19)='delprop',iprt( 19)=  0
+   subs( 20)='delvsf ',iprt( 20)=  0
+   subs( 21)='diagbasb',iprt( 21)= 0
+   subs( 22)='djprojec',iprt( 22)= 0
+   subs( 23)='enlvls ',iprt( 23)=  0
+   subs( 24)='etam   ',iprt( 24)=  0
+   subs( 25)='figure ',iprt( 25)=  0
+   subs( 26)='harmonic',iprt( 26)= 0
+   subs( 27)='harmonid',iprt( 27)= 0
+   subs( 28)='hermite',iprt( 28)=  0
+   subs( 29)='hermited',iprt( 29)= 0
+   subs( 30)='hollchar',iprt( 30)= 0
+   subs( 31)='hybrid ',iprt( 31)=  0
+   subs( 32)='input  ',iprt( 32)=  1
+   subs( 33)='inputx ',iprt( 33)=  0
+   subs( 34)='intbas ',iprt( 34)=  0
+   subs( 35)='intfbr ',iprt( 35)=  0
+   subs( 36)='jacobi ',iprt( 36)=  0
+   subs( 37)='jacprop',iprt( 37)=  0
+   subs( 38)='kbes   ',iprt( 38)=  0
+   subs( 39)='kinchi ',iprt( 39)=  0
+   subs( 40)='kintheta',iprt( 40)= 0
+   subs( 41)='kmatopen',iprt( 41)= 0
+   subs( 42)='kmatrx ',iprt( 42)=  0
+   subs( 43)='labelit',iprt( 43)=  0
+   subs( 44)='legendre',iprt( 44)= 0
+   subs( 45)='loadu  ',iprt( 45)=  0
+   subs( 46)='lorder ',iprt( 46)=  0
+   subs( 47)='main   ',iprt( 47)=  0
+   subs( 48)='mat    ',iprt( 48)=  0
+   subs( 49)='matbas ',iprt( 49)=  0
+   subs( 50)='matelmb',iprt( 50)=  0
+   subs( 51)='mem_mat',iprt( 51)=  0
+   subs( 52)='mem_mshe',iprt( 52)= 0
+   subs( 53)='mem_ovr',iprt( 53)=  0
+   subs( 54)='mem_pict',iprt( 54)= 0
+   subs( 55)='mem_quad',iprt( 55)= 0
+   subs( 56)='mem_rmsp',iprt( 56)= 0
+   subs( 57)='mem_sfun',iprt( 57)= 0
+   subs( 58)='memory ',iprt( 58)=  0
+   subs( 59)='memstore',iprt( 59)= 0
+   subs( 60)='msher  ',iprt( 60)=  0
+   subs( 61)='nWRITE ',iprt( 61)=  0
+   subs( 62)='overlap',iprt( 62)=  0
+   subs( 63)='ovlaps ',iprt( 63)=  0
+   subs( 64)='ovr    ',iprt( 64)=  0
+   subs( 65)='ovrbas ',iprt( 65)=  1
+   subs( 66)='ovrfem ',iprt( 66)=  0
+   subs( 67)='pictre ',iprt( 67)=  0
+   subs( 68)='pot_read',iprt( 68)= 0
+   subs( 69)='potelmnt',iprt( 69)= 0
+   subs( 70)='potmat ',iprt( 70)=  0
+   subs( 71)='potth  ',iprt( 71)=  0
+   subs( 72)='potva  ',iprt( 72)=  0
+   subs( 73)='potvb  ',iprt( 73)=  0
+   subs( 74)='potvc  ',iprt( 74)=  0
+   subs( 75)='primitiv',iprt( 75)= 0
+   subs( 76)='qlevel ',iprt( 76)=  1
+   subs( 77)='readabf',iprt( 77)=  0
+   subs( 78)='readbas',iprt( 78)=  0
+   subs( 79)='readfem',iprt( 79)=  0
+   subs( 80)='readin ',iprt( 80)=  0
+   subs( 81)='recon  ',iprt( 81)=  0
+   subs( 82)='rmsphi ',iprt( 82)=  0
+   subs( 83)='rsurf  ',iprt( 83)=  0
+   subs( 84)='rtrans ',iprt( 84)=  0
+   subs( 85)='scheck ',iprt( 85)=  0
+   subs( 86)='sector ',iprt( 86)=  0
+   subs( 87)='setbasis',iprt( 87)= 1
+   subs( 88)='setbassb',iprt( 88)= 0
+   subs( 89)='sfunbas',iprt( 89)=  1
+   subs( 90)='sfunbasb',iprt( 90)= 0
+   subs( 91)='sfunc  ',iprt( 91)=  0
+   subs( 92)='sspace ',iprt( 92)=  0
+   subs( 93)='startv ',iprt( 93)=  0
+   subs( 94)='tdfe   ',iprt( 94)=  0
+   subs( 95)='trnsfm ',iprt( 95)=  0
+   subs( 96)='upsiln ',iprt( 96)=  0
+   subs( 97)='vibfun ',iprt( 97)=  0
+   subs( 98)='vivs   ',iprt( 98)=  0
+   subs( 99)='wavder ',iprt( 99)=  0
+   subs(100)='wrmod  ',iprt(100)=  0
+ $end 

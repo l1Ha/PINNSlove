@@ -1,0 +1,22 @@
+name = "abc"
+version = "0.1.0"
+license = "license"
+author = "LI Hao"
+maintainer = "LIH_ao@outlook.com"
+copyright = "Copyright 2024, LI Hao"
+[build]
+# BLAS/LAPACK 链接二选一 (run_pipeline.sh 按编译器/MKL 自动切换, 勿手改):
+link=["blas","lapack"]
+#link=["mkl_intel_lp64","mkl_intel_thread","mkl_core","pthread","m","dl"]
+auto-executables = true
+auto-tests = true
+auto-examples = true
+module-naming = false
+[install]
+library = false
+[fortran]
+implicit-typing = true
+implicit-external = true
+source-form = "default"
+[dependencies]
+openmp="*"

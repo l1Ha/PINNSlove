@@ -1,0 +1,48 @@
+{
+  "method": "1D Morse scattering: FD reference vs first-principles semiclassical vs physics-informed random-feature network (LS-trained)",
+  "wall_time_s": 1.2804839611053467,
+  "results": [
+    {
+      "E": 1000.0,
+      "k": 5.467692654595026,
+      "absR_ref": 0.9999999999998642,
+      "argR_ref": -2.6551391266275632,
+      "absR_sc": 0.9999999999999997,
+      "argR_sc": -2.6849837773575973,
+      "l2_sc": 0.018194222668630543,
+      "absR_pinn": 1.0,
+      "argR_pinn": -2.665842226799967,
+      "l2_pinn": 0.009504825797661876,
+      "correction_accepted": false,
+      "val_improvement": 1.0
+    },
+    {
+      "E": 2000.0,
+      "k": 7.7324851070160365,
+      "absR_ref": 0.999999999999963,
+      "argR_ref": 0.47293721949265466,
+      "absR_sc": 0.9999999999999989,
+      "argR_sc": 0.4495959987183701,
+      "l2_sc": 0.014550158332818369,
+      "absR_pinn": 0.9999999999999998,
+      "argR_pinn": 0.46744955867045473,
+      "l2_pinn": 0.007638378088386762,
+      "correction_accepted": false,
+      "val_improvement": 1.0
+    },
+    {
+      "E": 4000.0,
+      "k": 10.935385309190051,
+      "absR_ref": 1.0000000000000357,
+      "argR_ref": -0.9993634845099932,
+      "absR_sc": 1.0000000000000002,
+      "argR_sc": -1.0208019437837972,
+      "l2_sc": 0.013995924141980153,
+      "absR_pinn": 1.0000000000000002,
+      "argR_pinn": -1.0049999872964646,
+      "l2_pinn": 0.006676241327051954,
+      "correction_accepted": false,
+      "val_improvement": 1.0
+    }
+  ]
+}

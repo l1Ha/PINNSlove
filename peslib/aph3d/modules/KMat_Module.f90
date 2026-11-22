@@ -1,0 +1,5 @@
+MODULE KMat_Module
+   IMPLICIT NONE
+   SAVE
+   LOGICAL NewKMat
+END MODULE KMat_Module

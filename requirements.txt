@@ -1,0 +1,15 @@
+# Core scientific stack (required)
+numpy>=1.22
+scipy>=1.9
+matplotlib>=3.5
+
+# PyTorch is only needed for the PINN solvers (scripts/run_*_bound.py,
+# run_scatter_1d.py, run_scatter_2d.py, run_3d_water.py, ...).
+# The classical reference solvers, the coupled-channel machinery
+# (src/reference.py, src/j_frames.py, src/scatter_extract.py) and the
+# BKMP2 H+H2 scripts run without it.
+#
+# CPU-only install:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+# CUDA install: see https://pytorch.org/get-started/locally/
+torch>=1.13

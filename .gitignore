@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# large / regenerable artefacts
+results/_cache/
+results/**/*.npz
+results/**/*.pt
+*.log
+
+# native library and Fortran module files (rebuildable via src/bkmp2.py)
+peslib/*.so
+peslib/*.dylib
+peslib/*.dll
+peslib/*.mod
+peslib/*.o
+
+# LaTeX auxiliaries
+article/*.aux
+article/*.log
+article/*.out
+article/*.toc
+texput.log
+
+# ===== 上传 GitHub 时的排除项（大体积数据与构建产物，可按 README 重建）=====
+# APH3D 子项目的运行输出与编译产物（~26 GB）、KRb2 势能格点库（99 MB）
+peslib/aph3d/run_*/
+peslib/aph3d/test_*/
+peslib/aph3d/bin/
+peslib/aph3d/objs/
+peslib/aph3d/lib/
+peslib/aph3d/KRb2_PESs/
+# 参考势能数据（100 MB）
+ref/
+# 临时/编辑器杂项
+fort.*
+.peslib_backup_*
+sfunbas_dbg.txt
+postproc/

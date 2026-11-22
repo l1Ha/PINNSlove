@@ -1,0 +1,21 @@
+{
+  "system": "H2O 3D (Jacobi r, R, gamma), J = 0, reduced chi = r R psi",
+  "method": "variational PINN, mini-batch Adam + chunked LBFGS",
+  "reference": "FD x FD x Legendre-DVR (90 x 100 x 44)",
+  "n_states": 1,
+  "wall_time_s": 10.52777361869812,
+  "max_abs_err_cm1": 775.4175174436969,
+  "rows": [
+    {
+      "n": 0,
+      "pinn": -75775.28047944448,
+      "E_pde_finegrid": -75775.27087871812,
+      "E_pde_finegrid2": -75664.39707862797,
+      "fine_grid_agreement": 110.87380009015033,
+      "E_sob_finegrid": -75915.90900210121,
+      "ritz": -77145.63320239825,
+      "dvr": -76550.68839616182,
+      "err": 775.4175174436969
+    }
+  ]
+}

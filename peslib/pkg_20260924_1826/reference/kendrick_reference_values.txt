@@ -1,0 +1,21 @@
+Kendrick 2016 (New J. Phys. 18, 123020) Tables 1+2 — ultracold (1 uK) rate sums
+D+HD(v=4,j=0) -> D+HD(v',j'), sums over (v',j'), spin-statistical factors included
+
+even exchange symmetry (Table 1, spin factor 2/3):
+  NGP_sum = 4.102e-13 cm^3/s
+  GP_sum  = 6.671e-15 cm^3/s    (GP/NGP = 0.016, strong suppression)
+odd exchange symmetry (Table 2, spin factor 1/3):
+  NGP_sum = 3.723e-15 cm^3/s
+  GP_sum  = 2.057e-13 cm^3/s    (GP/NGP = 55.3, strong enhancement)
+TOTAL:
+  NGP = 4.139e-13 cm^3/s
+  GP  = 2.124e-13 cm^3/s
+  GP/NGP = 0.513                ("factor of 2" effect, net suppression)
+
+Shape resonances (from paper text): l=2 near 1.8 K, l=3 near 7 K.
+Kendrick 2018 (Chem. Phys. 515 (2018) 387) Fig.2 anchors (digitized):
+  diabatic 2x2 @ 1 uK  ≈ 3e-11 cm^3/s (flat -> 100 K)
+  adiabatic GP  @ 1 uK  ≈ 3e-11 cm^3/s (identical at v=4, below CI)
+  adiabatic NGP @ 1 uK  ≈ 2e-12 cm^3/s; l=1 shape-resonance rise to ~7e-11 near 1-3 K;
+                        l=2 dip/features near ~8 K; merges with GP above ~20 K
+=> ultracold GP enhancement GP/NGP ≈ 10-15 at 1 uK.

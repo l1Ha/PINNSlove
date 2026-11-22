@@ -1,0 +1,141 @@
+{
+  "self_test_rel_dev": 2.747157401585245e-09,
+  "energies": [
+    {
+      "E_c": 200.0,
+      "eta_star": 100.0,
+      "reference_uncertainty_l2": 0.015384122114244243,
+      "runs": [
+        {
+          "n_feat": 2000,
+          "sigma_R": [
+            8.0,
+            20.0
+          ],
+          "ridge": 0.1,
+          "val_pde_residual": 0.06516823584545886,
+          "l2_interior_4p9": 1.0007975621404488,
+          "l2_interior_6p9": 1.0005394103234375,
+          "hankel_flux_ratio": 5.047556187878866e-55,
+          "hankel_n_open": 3,
+          "wall_s": 7.8
+        },
+        {
+          "n_feat": 2000,
+          "sigma_R": [
+            8.0,
+            20.0,
+            50.0
+          ],
+          "ridge": 0.01,
+          "val_pde_residual": 0.03297373756413883,
+          "l2_interior_4p9": 0.9999934268851306,
+          "l2_interior_6p9": 1.0000020278315114,
+          "hankel_flux_ratio": 8.761548577468597e-54,
+          "hankel_n_open": 3,
+          "wall_s": 7.9
+        },
+        {
+          "n_feat": 4000,
+          "sigma_R": [
+            8.0,
+            20.0,
+            50.0,
+            120.0
+          ],
+          "ridge": 0.1,
+          "val_pde_residual": 0.01877909462275909,
+          "l2_interior_4p9": 1.000466332209988,
+          "l2_interior_6p9": 1.0007819394949369,
+          "hankel_flux_ratio": 9.09735774515862e-54,
+          "hankel_n_open": 3,
+          "wall_s": 25.4
+        },
+        {
+          "n_feat": 8000,
+          "sigma_R": [
+            20.0,
+            60.0,
+            150.0,
+            300.0
+          ],
+          "ridge": 0.0001,
+          "val_pde_residual": 0.04306878402288295,
+          "l2_interior_4p9": 0.8286859586902814,
+          "l2_interior_6p9": 0.895061121140411,
+          "hankel_flux_ratio": 5.5667457267514895e-55,
+          "hankel_n_open": 3,
+          "wall_s": 630.2
+        }
+      ]
+    },
+    {
+      "E_c": 500.0,
+      "eta_star": 200.0,
+      "reference_uncertainty_l2": 0.005480436393690471,
+      "runs": [
+        {
+          "n_feat": 2000,
+          "sigma_R": [
+            8.0,
+            20.0
+          ],
+          "ridge": 0.01,
+          "val_pde_residual": 0.06307364565071638,
+          "l2_interior_4p9": 1.000114717486933,
+          "l2_interior_6p9": 1.000023268518972,
+          "hankel_flux_ratio": 9.05702211512555e-53,
+          "hankel_n_open": 5,
+          "wall_s": 7.7
+        },
+        {
+          "n_feat": 2000,
+          "sigma_R": [
+            8.0,
+            20.0,
+            50.0
+          ],
+          "ridge": 0.1,
+          "val_pde_residual": 0.03362712218682383,
+          "l2_interior_4p9": 1.000742495063237,
+          "l2_interior_6p9": 1.000031231070977,
+          "hankel_flux_ratio": 1.8289559551857945e-53,
+          "hankel_n_open": 5,
+          "wall_s": 7.9
+        },
+        {
+          "n_feat": 4000,
+          "sigma_R": [
+            8.0,
+            20.0,
+            50.0,
+            120.0
+          ],
+          "ridge": 0.1,
+          "val_pde_residual": 0.019187051417341377,
+          "l2_interior_4p9": 1.0002066839835153,
+          "l2_interior_6p9": 0.9997415471104202,
+          "hankel_flux_ratio": 6.74312022658152e-55,
+          "hankel_n_open": 5,
+          "wall_s": 25.4
+        },
+        {
+          "n_feat": 8000,
+          "sigma_R": [
+            20.0,
+            60.0,
+            150.0,
+            300.0
+          ],
+          "ridge": 1e-08,
+          "val_pde_residual": 0.04270024417713309,
+          "l2_interior_4p9": 0.7976104285722571,
+          "l2_interior_6p9": 0.9313982382395826,
+          "hankel_flux_ratio": 7.914209882909882e-54,
+          "hankel_n_open": 5,
+          "wall_s": 621.5
+        }
+      ]
+    }
+  ]
+}

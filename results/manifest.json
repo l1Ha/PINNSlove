@@ -1,0 +1,164 @@
+{
+  "registry_version": "1.0.0",
+  "generated_at": "2026-10-11 13:41:39 UTC",
+  "host": "think-p212.qdmovie.edu.cn",
+  "figures": {
+    "fig_1d_bound.png": {
+      "relative_path": "article/fig/fig_1d_bound.png",
+      "size_bytes": 954111,
+      "sha256": "8e5e6a634a7b60ce3e7a7c18ec1a4d73a5bed67e6d8ed6c02f8f879042c308c4",
+      "modified_at": "2026-10-10 06:30:39"
+    },
+    "fig_1d_scatter.png": {
+      "relative_path": "article/fig/fig_1d_scatter.png",
+      "size_bytes": 927390,
+      "sha256": "6ddc4b7856910fc9494ab7d394c9ff8cc05cc40831947a6f003f94b56b5c2d9a",
+      "modified_at": "2026-10-11 04:10:33"
+    },
+    "fig_2d_states.png": {
+      "relative_path": "article/fig/fig_2d_states.png",
+      "size_bytes": 394158,
+      "sha256": "11d43e960e5f4da354bbf81806b1fae7dc1b2f944821594dff1d36597a3b7c07",
+      "modified_at": "2026-10-10 17:17:44"
+    },
+    "fig_3d_energy_scan.png": {
+      "relative_path": "article/fig/fig_3d_energy_scan.png",
+      "size_bytes": 1418551,
+      "sha256": "fee92548a4a5125f5bb5835f3f997ae7814cae2ea67812b35f0004d03497d00e",
+      "modified_at": "2026-10-06 09:11:06"
+    },
+    "fig_3d_reference_validation.png": {
+      "relative_path": "article/fig/fig_3d_reference_validation.png",
+      "size_bytes": 493258,
+      "sha256": "839c8d94573512a16ed7153f6de554513d619fed456f56ae2aaf9a2932fe82dc",
+      "modified_at": "2026-10-10 17:17:57"
+    },
+    "fig_3d_slice.png": {
+      "relative_path": "article/fig/fig_3d_slice.png",
+      "size_bytes": 510186,
+      "sha256": "4dde13db72d0691104c30bf1ce1929c9542427da5373c6069097f823c3e0558c",
+      "modified_at": "2026-10-10 17:17:45"
+    },
+    "fig_4d_diatom_diatom.png": {
+      "relative_path": "article/fig/fig_4d_diatom_diatom.png",
+      "size_bytes": 684594,
+      "sha256": "7deb9e2ebeca2f3275ef73bc2a9b9dba470e06e9234b7e2ca089cda79f93d760",
+      "modified_at": "2026-10-06 09:25:45"
+    },
+    "fig_6d_diatom_diatom.png": {
+      "relative_path": "article/fig/fig_6d_diatom_diatom.png",
+      "size_bytes": 802194,
+      "sha256": "f77becc6c4bfa7b682b986125a3a1d0c6083ca38d7528facf366ad3a52159996",
+      "modified_at": "2026-10-06 09:26:45"
+    },
+    "fig_9d_12d_vibrations.png": {
+      "relative_path": "article/fig/fig_9d_12d_vibrations.png",
+      "size_bytes": 556939,
+      "sha256": "aeb33ec24d054c85106c10009ca294b5a58d089bb77ee888bf5e86fab99940c8",
+      "modified_at": "2026-10-06 09:26:30"
+    },
+    "fig_ablation.png": {
+      "relative_path": "article/fig/fig_ablation.png",
+      "size_bytes": 153494,
+      "sha256": "b24d98d724b054984d18fe507a55e2cc91595cdafe4769983b586fec4dd62c50",
+      "modified_at": "2026-10-11 03:32:18"
+    },
+    "fig_high_dim_bound.png": {
+      "relative_path": "article/fig/fig_high_dim_bound.png",
+      "size_bytes": 593525,
+      "sha256": "d63eef72b0cbea16345b5301a2117e91ad9f4a3034c5d813b7c04ed231188fb2",
+      "modified_at": "2026-10-06 13:00:52"
+    },
+    "fig_j1_scattering_frames.png": {
+      "relative_path": "article/fig/fig_j1_scattering_frames.png",
+      "size_bytes": 1003965,
+      "sha256": "0819bde2566bfea57bc011dbf5281ff73d003e99699777e39e5c5a479f1dad47",
+      "modified_at": "2026-10-06 12:59:34"
+    },
+    "fig_j_scatter_bkmp2.png": {
+      "relative_path": "article/fig/fig_j_scatter_bkmp2.png",
+      "size_bytes": 726982,
+      "sha256": "27ccb3a3696de6de4392224e1ff7d5145045d094aadb3c32cdbae9f8bbd3f316",
+      "modified_at": "2026-10-06 09:25:01"
+    },
+    "fig_j_scatter_comprehensive.png": {
+      "relative_path": "article/fig/fig_j_scatter_comprehensive.png",
+      "size_bytes": 1557281,
+      "sha256": "3c79afe3fc5aa551bccff3568e9a95632a5c358ed7cf4fe25edc9ca3018c4d35",
+      "modified_at": "2026-10-06 12:59:15"
+    },
+    "fig_j_validation.png": {
+      "relative_path": "article/fig/fig_j_validation.png",
+      "size_bytes": 1204943,
+      "sha256": "235874134debff683272d14cf70c156df4f6bce7ce995e17bf31fccf0577c83c",
+      "modified_at": "2026-10-06 09:18:52"
+    },
+    "fig_scatter_3d_bkmp2_100.png": {
+      "relative_path": "article/fig/fig_scatter_3d_bkmp2_100.png",
+      "size_bytes": 435477,
+      "sha256": "d8b01329707ea6eca79ac9431e36d99a857540542903ebba5be87101faa38403",
+      "modified_at": "2026-10-04 02:37:07"
+    },
+    "fig_scatter_3d_bkmp2_1000.png": {
+      "relative_path": "article/fig/fig_scatter_3d_bkmp2_1000.png",
+      "size_bytes": 456402,
+      "sha256": "099af0bb9d1b81d0017afcae76b13cbbd341a39fd56b29fd27347a59719a05b5",
+      "modified_at": "2026-10-04 02:37:10"
+    },
+    "fig_scatter_3d_bkmp2_1200.png": {
+      "relative_path": "article/fig/fig_scatter_3d_bkmp2_1200.png",
+      "size_bytes": 469752,
+      "sha256": "4fbdb47bd7e6c132cfdc16c07bbe3d06c6dfb7a7001c02c61ff871b46b1849e9",
+      "modified_at": "2026-10-04 02:37:13"
+    },
+    "fig_scatter_3d_bkmp2_200.png": {
+      "relative_path": "article/fig/fig_scatter_3d_bkmp2_200.png",
+      "size_bytes": 415611,
+      "sha256": "18305a16699e2aaf9980120907fc89a1a791adddd9afb57152a88cb5c793eb7b",
+      "modified_at": "2026-10-04 02:37:15"
+    },
+    "fig_scatter_3d_bkmp2_300.png": {
+      "relative_path": "article/fig/fig_scatter_3d_bkmp2_300.png",
+      "size_bytes": 456009,
+      "sha256": "31caac2061dd758b6c26485cdd0c04679566da534ec858665732da9c98a032a9",
+      "modified_at": "2026-10-04 02:37:18"
+    },
+    "fig_scatter_3d_bkmp2_400.png": {
+      "relative_path": "article/fig/fig_scatter_3d_bkmp2_400.png",
+      "size_bytes": 379287,
+      "sha256": "65e6b4a2b32ff09d18e7a96b44e175c83927acc86a5a61b7514762e1a8cefb90",
+      "modified_at": "2026-10-06 13:03:40"
+    },
+    "fig_scatter_3d_bkmp2_600.png": {
+      "relative_path": "article/fig/fig_scatter_3d_bkmp2_600.png",
+      "size_bytes": 460015,
+      "sha256": "ec59b66b169b97254f81a29b43d9453b81f07797b39e8eb180b4a0787b4be02e",
+      "modified_at": "2026-10-04 02:37:22"
+    },
+    "fig_scatter_3d_bkmp2_800.png": {
+      "relative_path": "article/fig/fig_scatter_3d_bkmp2_800.png",
+      "size_bytes": 461566,
+      "sha256": "1ed6aa19353ae4fded6fff6d365c2c515602f0f387f094dc9c58a37f6b733ce5",
+      "modified_at": "2026-10-04 02:37:24"
+    },
+    "fig_scatter_h2_bkmp2_400.png": {
+      "relative_path": "article/fig/fig_scatter_h2_bkmp2_400.png",
+      "size_bytes": 463565,
+      "sha256": "2315a1a75e0c9ea18269c674f94957d241c5111e54530fef170710fe5160cae9",
+      "modified_at": "2026-10-06 12:59:36"
+    },
+    "fig_scatter_h2_bkmp2_800.png": {
+      "relative_path": "article/fig/fig_scatter_h2_bkmp2_800.png",
+      "size_bytes": 464595,
+      "sha256": "f53665a6ec5a7294d1ffaeef069bfc34acf145aec06dba5e8b867e5b84ba37b6",
+      "modified_at": "2026-10-06 12:59:36"
+    }
+  },
+  "results_data": {},
+  "publication_pdf": {
+    "relative_path": "article/main.pdf",
+    "size_bytes": 14957982,
+    "sha256": "03c748bddb322fe7826605c3c1c41a24818d78a9369862454c2302c3ad474266",
+    "modified_at": "2026-10-09 12:29:31"
+  }
+}
