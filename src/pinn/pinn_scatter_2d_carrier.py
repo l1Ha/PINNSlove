@@ -30,7 +30,8 @@ class CarrierPINN2D:
     def __init__(self, pes, E_c, R_lo=0.6, R_hi=12.0, n_R=400, n_gamma=80,
                  cap_start=5.0, cap_eta=100.0, cap_width=2.0,
                  n_channels=10, n_corr=0, sigma_R=(8.0, 20.0), sigma_g=6.0,
-                 seed=0, val_frac=0.2, wall_window=0.6, wall_weight=1e3):
+                 seed=0, val_frac=0.2, wall_window=0.6, wall_weight=1e3,
+                 include_particular=True, part_ridge=1e-6):
         from src.conventional.reference import LegendreAngularDVR
         from src.conventional.scatter_2d import assemble_2d_scatter
         self.pes = pes
@@ -43,6 +44,13 @@ class CarrierPINN2D:
         # region, so without this the wall rows would dominate the residual).
         self.wall_window = float(wall_window)
         self.wall_weight = float(wall_weight)
+        # source-response (particular) columns: carrier columns satisfy the
+        # homogeneous channel equation, so their combinations CANNOT fit the
+        # inhomogeneous source term (measured in theory doc section 10).
+        # Adding a regularized per-channel particular solution makes the span
+        # able to represent L chi = src as well.
+        self.include_particular = bool(include_particular)
+        self.part_ridge = float(part_ridge)
 
         # discrete operator of the reference (same stencils / BC rows)
         A, b, R, xg, K, E_tot = assemble_2d_scatter(
@@ -58,6 +66,10 @@ class CarrierPINN2D:
                                  <= R_lo + self.wall_window)[0]
         self.names = []
         self.B = self._carrier_columns()
+        if self.include_particular:
+            self.Bp, self.part_names = self._particular_columns()
+            self.B = np.hstack([self.B, self.Bp])
+            self.names = self.names + self.part_names
         self.corr_names, self.Bc = self._correction_columns(sigma_R, sigma_g,
                                                            seed) if n_corr else ([], np.zeros((0, 0), complex))
 
@@ -95,6 +107,44 @@ class CarrierPINN2D:
         return names, np.column_stack(cols)
 
     # ------------------------------------------------------------------
+    def _particular_columns(self):
+        """Per-channel source-response fields: solve, with a small ridge,
+
+            (-B_R D2 + diag(eps_j) - E_tot) u_p = s_j
+
+        where s_j(R_i) = <Phi_j(R_i)| src(R_i, .)>_gamma is the channel
+        projection of the incident source -(V+D_e)e^{+iKR}.  The homogeneous
+        carriers then describe propagation and the particular columns the
+        source response; together the span can satisfy both L = 0 and
+        L = src in one least-squares problem (theory doc section 10)."""
+        from src.conventional.reference import _fd_second
+        import scipy.sparse as sp
+        import scipy.sparse.linalg as spla
+        D2 = _fd_second(self.n_R, self.R[1] - self.R[0], 4)
+        RR, GG = np.meshgrid(self.R, self.gam, indexing='ij')
+        src = -(self.pes.V_jacobi(self.pes.re, RR, GG) + self.pes.De) \
+            * np.exp(1j * self.K * RR)                      # (n_R, n_gamma)
+        ang_w = None
+        cols, names = [], []
+        for jj in self.channels:
+            eps_j = self.carrier.eps[:, jj]
+            Phi = self.carrier.Phi[:, :, jj]
+            s_j = np.sum(Phi * src, axis=1) / self.n_gamma
+            T = (-self.pes.BR * D2
+                 + sp.diags(eps_j - self.E_tot)).tocsc()
+            TtT = (T.conj().T @ T).tocsc()
+            reg = self.part_ridge * abs(TtT.diagonal()).max()
+            TtT = TtT + reg * sp.identity(self.n_R, format='csc')
+            rhs = T.conj().T @ s_j
+            u = spla.spsolve(TtT, rhs)
+            if not np.all(np.isfinite(u)):
+                continue
+            cols.append((u[:, None] * Phi).ravel())
+            names.append(f'P_{jj}')
+        if not cols:
+            return np.zeros((self.n_R * self.n_gamma, 0), complex), []
+        return np.column_stack(cols), names
+
     def _residual_matrix(self, B):
         L = self.A @ B                              # (n_nodes, n_basis)
         if self.wall_weight > 0 and len(self.wall_idx):
