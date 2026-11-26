@@ -71,6 +71,31 @@ class AdiabaticCarrier2D:
         self.U = {}      # j -> dict(U_plus, U_minus, dU_plus, dU_minus)
 
     # ------------------------------------------------------------------
+    def _q_disp(self, k2):
+        """Discrete-dispersion wavenumber solving (theory Eq. 21)
+
+            30 - 32 cos(qh) + 2 cos(2qh) = 12 h^2 k2,
+
+        i.e. the phase for which the 4th-order FD stencil (the reference
+        operator) sees exactly the local wavenumber k.  Unique root in
+        (0, pi/h) because f'(x) = 4 sin x (8 - cos x) > 0.  Only meaningful
+        for k2 > 0 (allowed region); the caller handles the forbidden side
+        with the continuous decay constant."""
+        tgt = 12.0 * self.h ** 2 * np.asarray(k2, float)
+        x = np.empty_like(tgt)
+        for idx, tv in np.ndenumerate(tgt):
+            lo, hi = 1e-14, np.pi - 1e-14
+            for _ in range(80):
+                mid = 0.5 * (lo + hi)
+                f = 30.0 - 32.0 * np.cos(mid) + 2.0 * np.cos(2.0 * mid)
+                if f < tv:
+                    lo = mid
+                else:
+                    hi = mid
+            x[idx] = 0.5 * (lo + hi)
+        return x / self.h
+
+    # ------------------------------------------------------------------
     def build_channels(self, n_channels=12, mask_eps=None):
         """Construct carriers for the first n_channels adiabatic curves.
 
@@ -100,7 +125,13 @@ class AdiabaticCarrier2D:
                     i_c = isc + 1
             if i_c == 0 and allow[0]:
                 i_c = 0
-            g = np.sqrt(np.abs(k2)) * self.h
+            # discrete-dispersion phase step: q_disp*h in the allowed
+            # region (removes the O((qh)^4 * L) phase mismatch with the
+            # reference's 4th-order stencil, theory section 9.2), continuous
+            # decay constant in the forbidden region
+            g = np.where(k2 > 0.0,
+                         self._q_disp(np.abs(k2)) * self.h,
+                         np.sqrt(np.abs(k2)) * self.h)
             # accumulate |k| from the turning point outwards
             S = np.empty(self.n_R)
             S[i_c] = 0.0
