@@ -10,51 +10,51 @@
           "n_corr": 0,
           "carrier": {
             "ridge": 1e-14,
-            "val_residual": 0.9828664334580386,
-            "n_basis": 16
+            "val_residual": 0.6076858369019248,
+            "n_basis": 24
           },
           "correction": {
             "accepted": false,
-            "val_residual": 0.9828664334580386,
+            "val_residual": 0.6076858369019248,
             "ridge": null
           },
-          "l2_interior_4p9": 4.063517185805309,
-          "l2_interior_6p9": 10.244281640296633,
-          "wall_s": 0.6
+          "l2_interior_4p9": 0.73564615778502,
+          "l2_interior_6p9": 3.9607377666071626,
+          "wall_s": 0.7
         },
         {
           "n_channels": 8,
           "n_corr": 300,
           "carrier": {
             "ridge": 1e-14,
-            "val_residual": 0.9828664334580386,
-            "n_basis": 16
+            "val_residual": 0.6076858369019248,
+            "n_basis": 24
           },
           "correction": {
             "accepted": true,
-            "val_residual": 0.4789281043276902,
-            "ridge": 0.0001
+            "val_residual": 0.4861019400460853,
+            "ridge": 1e-09
           },
-          "l2_interior_4p9": 0.5128366482325056,
-          "l2_interior_6p9": 1.6884369734284614,
-          "wall_s": 1.3
+          "l2_interior_4p9": 0.7048446421728696,
+          "l2_interior_6p9": 1.7460377903553759,
+          "wall_s": 1.4
         },
         {
           "n_channels": 8,
           "n_corr": 1500,
           "carrier": {
             "ridge": 1e-14,
-            "val_residual": 0.9828664334580386,
-            "n_basis": 16
+            "val_residual": 0.6076858369019248,
+            "n_basis": 24
           },
           "correction": {
             "accepted": true,
-            "val_residual": 0.4771673542039618,
-            "ridge": 1e-10
+            "val_residual": 0.48484785970489364,
+            "ridge": 1e-05
           },
-          "l2_interior_4p9": 0.5373058549236657,
-          "l2_interior_6p9": 2.1577767343017267,
-          "wall_s": 4.6
+          "l2_interior_4p9": 0.58598735450079,
+          "l2_interior_6p9": 2.4820006566658357,
+          "wall_s": 4.8
         }
       ]
     },
@@ -67,52 +67,52 @@
           "n_channels": 8,
           "n_corr": 0,
           "carrier": {
-            "ridge": 0.1,
-            "val_residual": 0.9799088535413454,
-            "n_basis": 16
+            "ridge": 0.01,
+            "val_residual": 0.600434974315015,
+            "n_basis": 24
           },
           "correction": {
             "accepted": false,
-            "val_residual": 0.9799088535413454,
+            "val_residual": 0.600434974315015,
             "ridge": null
           },
-          "l2_interior_4p9": 11.01231694870983,
-          "l2_interior_6p9": 38.715651606382885,
-          "wall_s": 0.6
+          "l2_interior_4p9": 0.7617923462412128,
+          "l2_interior_6p9": 5.702151919221437,
+          "wall_s": 0.7
         },
         {
           "n_channels": 8,
           "n_corr": 300,
           "carrier": {
-            "ridge": 0.1,
-            "val_residual": 0.9799088535413454,
-            "n_basis": 16
+            "ridge": 0.01,
+            "val_residual": 0.600434974315015,
+            "n_basis": 24
           },
           "correction": {
             "accepted": true,
-            "val_residual": 0.4760551437191757,
-            "ridge": 1e-05
+            "val_residual": 0.47807890409838316,
+            "ridge": 1e-09
           },
-          "l2_interior_4p9": 0.7601214852210916,
-          "l2_interior_6p9": 3.3973315055445035,
-          "wall_s": 1.2
+          "l2_interior_4p9": 0.6537746340327699,
+          "l2_interior_6p9": 3.3849523175817784,
+          "wall_s": 1.4
         },
         {
           "n_channels": 8,
           "n_corr": 1500,
           "carrier": {
-            "ridge": 0.1,
-            "val_residual": 0.9799088535413454,
-            "n_basis": 16
+            "ridge": 0.01,
+            "val_residual": 0.600434974315015,
+            "n_basis": 24
           },
           "correction": {
             "accepted": true,
-            "val_residual": 0.47360892752778344,
-            "ridge": 0.01
+            "val_residual": 0.47570440479510145,
+            "ridge": 0.001
           },
-          "l2_interior_4p9": 0.45023392918689265,
-          "l2_interior_6p9": 4.701230125378489,
-          "wall_s": 4.6
+          "l2_interior_4p9": 0.4748056891814128,
+          "l2_interior_6p9": 3.9160288376141126,
+          "wall_s": 4.8
         }
       ]
     }

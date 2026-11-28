@@ -49,9 +49,11 @@ class AdiabaticCarrier2D:
         from scipy.optimize import linear_sum_assignment
         self.eps = np.empty((self.n_R, self.n_gamma))
         self.Phi = np.empty((self.n_R, self.n_gamma, self.n_gamma))
+        self.H_gamma = np.empty((self.n_R, self.n_gamma, self.n_gamma))
         prev = None
         for i in range(self.n_R):
             M = C[i] * self.j2 + np.diag(Vg[i])
+            self.H_gamma[i] = M
             ev, evec = np.linalg.eigh(M)
             if prev is not None:
                 # adiabatic continuity: assign each new eigenvector to the

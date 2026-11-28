@@ -146,5 +146,23 @@ python3 scripts/validation/run_full_regression.py
 * **2D 载波理论的首次数值实现（2026-11-23，`docs/theory_scattering_2d.md` §7–§8）**：推导出二维绝热通道 eikonal + 均匀 Langer-Airy 载波 $U^\pm_j$（零拟合参数，渐近纯入射/出射），并实现 `AdiabaticCarrier2D` + `CarrierPINN2D`（载波基 + 光滑修正特征的交叉验证岭回归）。**诚实结果**：纯载波 L2 = 4.06 (E_c=200) / 11.0 (E_c=500)，不可用；载波+300 光滑修正降到 **0.51 / 0.76**（相对强形式 PINN 的 1.22/1.56 改善约 2 倍），但离参考不确定度（1.5%/0.55%）仍差 1.5–2 个量级。误差预算诊断：载波通道径向残差 10–16%（网格 h·k≈1，4 阶差分无法识别 k≈25–36 Å⁻¹ 的解析载波）、绝热耦合残差 7–21%（通道函数在阱内变化剧烈）、Bi 支禁戒区指数增长。**结论：机制部分成立但实现未兑现理论优势**；可复现的下一步（细化载波网格/解析 Airy 导数、绝热基 Berry 规范固定、或采用 Johnson log-derivative CAP 金标准）已写入理论文档 §8.3。数据：`results/server_2d/scatter2d_carrier.json`。
 * **离散色散修正的实测（2026-11-26，`docs/theory_scattering_2d.md` §9–§10）**：推导出 4 阶 FD 离散色散关系 $\kappa^2(q)=[30-32\cos qh+2\cos 2qh]/(12h^2)$ 与 $O((qh)^4)$ 相位失配估计（$k\approx25$–$36\ \text{Å}^{-1}$ 时累积 0.6–1.8 rad），并实现二分求根接入载波（`_q_disp`）。**实测结果与预测相反**：逐列残差**完全不变**（开放通道 0.157–0.172、半闭 0.571–0.719、深闭 0.914–1.339，连续相位与离散色散相位两列数值一致）——相位失配不是主导项，主导项是绝热耦合与深闭通道构造质量。另一结构性事实：载波列近似满足**齐次**方程而未知量满足非齐次方程 $L\chi_{sc}=src$，齐次列的组合无法拟合源，故纯载波验证残差恒在 0.98–0.99；真正起作用的是修正特征。修正后的路线（源响应载波/耦合通道基/Johnson CAP 金标准）已写入 §10。
 * **源的响应列与「残差非精度代理」的实测边界（2026-11-26，§11）**：实现每通道响应列（TtT+ρI 正则化求解 (−B_R D2+ε_j−E)u_p=s_j），验证残差从 0.99 降到 0.61（结构上补齐源项），但**外部 L2 反而从 0.51 变差到 0.70**。据此确认：标度化残差换算律 $\delta\chi\approx\varepsilon S/E_c$ 只在接近收敛的邻域成立；在 O(1) 误差区不同基可把残差压到同一水平却对应不同的错解方向，**只有独立参考解的外部 L2 可信**（本仓库从不用自证残差宣称精度）。当前 2D 求解器诚实状态：线性配置家族 L2 平台 0.51–0.80，最佳为齐次载波+300 光滑特征；达到参考精度需耦合通道基或 Johnson log-derivative+CAP 金标准参考。
+* **diabatic 载波两次实现（2026-11-28，`docs/theory_scattering_2d.md` §12–§13，流水线实算）**：推导平行输运变换 $\partial_R U=-AU$（对角 Berry 联络恒零、导数耦合精确消项）与精确 diabatic 通道方程 $\tilde V_{\rm eff}=U^T{\rm diag}(\varepsilon)U-B_RU^TA^TAU$。第一次实现（中心差分 A）**未通过自检**（反对称性 1.4×10²、U 正交性 1.8，数字作废）；改用 Hellmann–Feynman 型 $A_{jk}=\langle\Phi_j|\partial_R H_\gamma|\Phi_k\rangle/(\varepsilon_k-\varepsilon_j)$（反对称精确、$\|U^TU-I\|=8.7\times10^{-15}$、开通道列残差 0.28/0.22）后数学有效，但 **offdiag_ratio=1.000** —— diabatic 非对角势与对角同量级，对角载波分解前提不成立，L2=4.99/6.13。**结论（§13.3）**：四条表征路线（强形式/ELM/绝热载波/diabatic 载波）已系统穷尽，通道耦合必须进入基（close-coupling 基）或采用 Johnson log-derivative+CAP 金标准。数据：`results/server_2d/scatter2d_diabatic.json`。
 * **BKMP2 H+H₂ 2D 散射（经典通道投影，无深阱）**：该体系无深阱。已修复 Robin 边界符号 bug（旧实现 `(d_R - iK)χ = -2iKe^{-iKR}` 在 e^{+iEt} 约定下施加的是**出射波幅度=1**（时间反演的无源 BVP），正确条件为 `(d_R + iK)χ = +2iKe^{+iKR}` 锚定单位入射振幅）。**已知局限（如实报告）**：参考解仍有盒尺寸依赖（R_hi 9→15 Å 内部解在全局相位对齐后差异 ~99.9%，范数 ∝ R_hi）——根因是 E_tot 处离散盒能级间距仅 ~2.6 cm⁻¹，(H−E_tot) 近奇异，直接稀疏解沿近零方向放大的幅度由舍入决定；标准修复需要 log-derivative（Johnson）传播或复吸收势。**在实现收敛参考之前，该体系上的 PINN-vs-参考精度声明同样不作**。当前 Level 2 回归检验仅验证通道投影与全维 FD 解的**同一 BVP 投影一致性**（0.0117%，时反演共轭关系下范数不变的内部一致性检查）。
 * **J > 0 耦合信道（BKMP2）**：高斯求积势能矩阵元，S 矩阵幺正性残差 $\le 1.97 \times 10^{-6}$；BF/SF 坐标系等价性 $\|\chi_{\mathrm{SF}} - \chi_{\mathrm{BF}} \mathbf{U}\|_{\infty} \le 10^{-10}$。
+
+
+## 项目地图与服务器流水线
+
+* **目录结构**：`src/conventional`（FD/DVR/密切耦合/CAP/半经典载波参考解）、
+  `src/pinn`（变分 PINN、1D 载波+交叉验证修正、2D 强形式/ELM/绝热载波/diabatic 载波）、
+  `scripts/{validation,pinn,conventional,server}`、`docs/`（理论推导 + 结果索引）、
+  `results/server_2d/`（服务器实算存档）。数据索引见 `docs/results_index.md`，
+  理论推导全文见 `docs/theory_scattering_2d.md`（§1–§13）。
+* **服务器流水线**：`bash scripts/server/run_pipeline.sh [SERVER]` —— 同步代码到
+  实验室服务器（默认 xb002: 192.168.6.24，192 核 + A100-40GB），顺序执行
+  回归套件与全部基准（1D/2D CAP/ELM/载波/diabatic/收敛研究/CAP 扫描），
+  结果与日志自动回收到 `results/server_2d/`。**全部计算只跑在服务器上，
+  本地不做任何数值计算**。
+* **防造假约定（AIPro.md）**：每个数字有唯一可复算来源（`docs/results_index.md`）；模型选择
+  （岭参数、修正接受）只使用 PDE 验证残差，从不接触参考解；负结果如实
+  记录并写入理论文档对应章节。
